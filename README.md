@@ -1,7 +1,7 @@
-<h1 align="center"><img width="75px" src="https://github.com/FelipePDS/node/blob/master/.github/images/nodejs.png" alt="Node.js"></h1>
+<h1 align="center"><img width="75px" src="https://github.com/FelipePDS/node/blob/main/.github/images/nodejs.png" alt="Node.js"></h1>
 
 <p align="center">
-    <a href="https://github.com/FelipePDS/node/blob/master/LICENSE"><img src="https://img.shields.io/github/license/FelipePDS/node?style=for-the-badge"></a> 
+    <a href="https://github.com/FelipePDS/node/blob/main/LICENSE"><img src="https://img.shields.io/github/license/FelipePDS/node?style=for-the-badge"></a> 
     <img src="https://img.shields.io/github/last-commit/FelipePDS/node?style=for-the-badge"> 
     <img src="https://img.shields.io/static/v1?label=node&message=v12.18.0&color=339933&style=for-the-badge&logo=node.js&logoColor=white"> 
 </p>
@@ -43,14 +43,9 @@
 
 <br>
 
-<<<<<<< HEAD
-<h1 id="whats-the-node">1. WHAT'S THE NODE :question:</h1>
-<p>Para entender o Node.js é muito importante saber sobre Javascript também</p>
-=======
-<h1 id="whats-the-node">1. WHAT'S THE NODE</h1>
+<h1 id="whats-the-node">1. WHAT'S THE NODE.JS</h1>
 <p>Para entender o <a href="https://nodejs.org/">Node.js</a> é muito importante saber sobre Javascript. Sabendo disso fica fácil entender que o Javascript é compilado pelos navegadores para que ele funcione, como é o caso do Chrome que tem "no seu coração" o "motorzinho" V8, que compila o código Javascript para executar todos os seus comandos na máquina de qualquer pessoa. Porém hoje não é mais necessário depender dos navegadores para executar o Javascript, pois com o Node.js é possível compilar o Javascript direto na máquina da pessoa que tive-lo (ambiente de desenvolvimento), fornecendo muitos recursos e com um funcionamento que permite realizar coisas no Backend que o torna mais único :sunglasses:. Com esse funcionamento em um ambiente separado do navegador, é possível criar servidores, APIs e muito mais envolvendo o Node.js.</p>
 <p>Seu funcionamento é explicado a seguir, dizendo mais a forma do Javascript ler o código e o que isso influencia na qualidade do resultado do código...</p>
->>>>>>> 49a8867aad5f1398f3691114c57e23fa428f491d
 
 <h2 id="how-it-works">1.1 How It Works</h2>
 <p>O compilamento do Node.js funciona de forma assíncrona, isso é, ele lê todo o código "de uma vez só", ou seja, ele não bloqueia com cada bloco de código, ele consegue ler todos muito rapidamente, porém quando há um bloco de código com um tempo determinado para executar, ele não o aguarda para avançar para a leitura do resto do código, e quando o tempo necessário para o executar acaba, ele o executa sem problemas. Um exemplo bem básico disso...<br> No Javascript temos a função setInterval(), onde o bloco de código executado como primeiro parâmetro dela vai executar após um determinado tempo em milisegundos que é indicado como segundo parâmetro na função, no resultado do seguinte exemplo vemos que o primeiro bloco de código executa após o determinado tempo (milisegundos) no segundo parâmetro da função setInterval, e mesmo que esse bloco de código esteja vindo antes do outro bloco de código marcado como uma função nomeada de secondBlock(), ele acaba sendo executado apenas depois com a mensagem retornada no console, pois ele está determinado para executar após o determinado tempo:</p>
@@ -98,7 +93,7 @@ $ npm install express
 
 <br>
 
-<h1 id="how-to-use-node">2. HOW TO USE NODE.js</h1>
+<h1 id="how-to-use-node">2. HOW TO USE NODE.JS</h1>
 <p>Para utilizar o Node.js, é necessário apenas o próprio Node.js e um editor de código, que no caso é muito recomendado o <a href="https://code.visualstudio.com/">Visual Studio Code</a>, pois com ele é possível executar muitas coisas, como o próprio Node.js, ou utilizar o terminal para ir adicionando pacotes ao projeto com o NPM</p>
 
 <h2 id="install-node">2.1 Install :floppy_disk:</h2>
@@ -144,7 +139,7 @@ $ git config core.sparseCheckout true
 $ echo 'nameOfTheSubdirectory' >> .git/node/sparse-checkout
 
 # Pull the subdirectory
-$ git pull origin master
+$ git pull origin main
 ```
 
 <blockquote>Font: <a href="https://terminalroot.com.br/2019/09/como-clonar-somente-um-subdiretorio-com-git-ou-svn.html">terminalroot.com.br</a></blockquote>
@@ -174,7 +169,7 @@ $ git pull origin master
 
 <br>
 
-<p>Agora é possível praticar Node.js e se tornar um mestre utilizando-o... :laughing:</p>
+<p>Agora é praticar Node.js e se tornar um mestre utilizando-o... :laughing:</p>
 <img width="700px" src="http://clubedosgeeks.com.br/wp-content/uploads/2016/01/dormrm.gif" alt="GIF Programming">
 
 <h1 id="references">4. REFERENCES :anchor:</h1>
@@ -201,4 +196,4 @@ $ git pull origin master
     <a href="https://twitter.com/FelipePintoDaS1"><img src="https://img.shields.io/static/v1?label=+&message=@FelipePintoDaS1&color=1DA1F2&style=flat&logo=twitter&logoColor=white"/></a> 
     <img src="https://img.shields.io/static/v1?label=+&message=felipepdasilva66@gmail.com&color=EA4335&style=flat&logo=gmail&logoColor=white"/>
 </p>
-<p align="center"><a href="https://github.com/FelipePDS/node/blob/master/LICENSE">MIT License</a> &bull; &copy; FelipePDS</p>
+<p align="center"><a href="https://github.com/FelipePDS/node/blob/main/LICENSE">MIT License</a> &bull; &copy; FelipePDS</p>
