@@ -44,11 +44,11 @@
 <br>
 
 <h1 id="whats-the-node">1. WHAT'S THE NODE.JS</h1>
-<p>Para entender o <a href="https://nodejs.org/">Node.js</a> é muito importante saber sobre Javascript. Sabendo disso fica fácil entender que o Javascript é compilado pelos navegadores para que ele funcione, como é o caso do Chrome que tem "no seu coração" o "motorzinho" V8, que compila o código Javascript para executar todos os seus comandos na máquina de qualquer pessoa. Porém hoje não é mais necessário depender dos navegadores para executar o Javascript, pois com o Node.js é possível compilar o Javascript direto na máquina da pessoa que tive-lo (ambiente de desenvolvimento), fornecendo muitos recursos e com um funcionamento que permite realizar coisas no Backend que o torna mais único :sunglasses:. Com esse funcionamento em um ambiente separado do navegador, é possível criar servidores, APIs e muito mais envolvendo o Node.js.</p>
-<p>Seu funcionamento é explicado a seguir, dizendo mais a forma do Javascript ler o código e o que isso influencia na qualidade do resultado do código...</p>
+<p>To understand <a href="https://nodejs.org/">Node.js</a> it is very important to know about Javascript. Knowing this, it is easy to understand that Javascript is compiled by browsers to make it work, as is the case with Chrome that has "at its heart" the "little engine" V8, which compiles the Javascript code to execute all its commands on the machine anyone. However, today it is no longer necessary to depend on browsers to execute Javascript, because with Node.js it is possible to compile Javascript directly on the machine of the person who had it (development environment), providing many resources and with a functioning that allows to perform things in the Backend that makes it more unique :sunglasses:. With this functioning in a separate browser environment, it is possible to create servers, APIs and much more involving Node.js.</p>
+<p>Its operation is explained below, saying more how Javascript reads the code and what it influences on the quality of the code result...</p>
 
 <h2 id="how-it-works">1.1 How It Works</h2>
-<p>O compilamento do Node.js funciona de forma assíncrona, isso é, ele lê todo o código "de uma vez só", ou seja, ele não bloqueia com cada bloco de código, ele consegue ler todos muito rapidamente, porém quando há um bloco de código com um tempo determinado para executar, ele não o aguarda para avançar para a leitura do resto do código, e quando o tempo necessário para o executar acaba, ele o executa sem problemas. Um exemplo bem básico disso...<br> No Javascript temos a função setInterval(), onde o bloco de código executado como primeiro parâmetro dela vai executar após um determinado tempo em milisegundos que é indicado como segundo parâmetro na função, no resultado do seguinte exemplo vemos que o primeiro bloco de código executa após o determinado tempo (milisegundos) no segundo parâmetro da função setInterval, e mesmo que esse bloco de código esteja vindo antes do outro bloco de código marcado como uma função nomeada de secondBlock(), ele acaba sendo executado apenas depois com a mensagem retornada no console, pois ele está determinado para executar após o determinado tempo:</p>
+<p>The compilation of Node.js works asynchronously, that is, it reads all the code "at once", that is, it does not block with each block of code, it can read them all very quickly, but when there is a block of code with a set time to execute, it does not wait for you to proceed to read the rest of the code, and when the time needed to execute it runs out, it executes without problems. A very basic example of this...<br> In Javascript we have the function setInterval(), where the code block executed as its first parameter will execute after a certain time in milliseconds which is indicated as the second parameter in the function, as a result of the following example we see that the first code block executes after the given time (milliseconds) in the second parameter of the setInterval function, and even if that code block is coming before the other code block marked as a function named secondBlock(), it ends up being executed only afterwards with the message returned in the console , as it is determined to run after a certain time:</p>
 
 ```javascript
 function firstBlock() {
@@ -64,54 +64,54 @@ function secondBlock() {
 firstBlock();
 secondBlock();
 
-// Resultado retornado no console:
+// Result returned on the console:
 // This is the Second Block
 // This is the First Block
 ```
 
-<p>Como podemos ver, o segundo bloco de código executou primeiro, pois o primeiro cógido foi determinado a ser executado após os 3000 milisegundos no setInterval</p>
-<p>Com essas informações em mãos, é bom ver o que é <kbd><a href="">callback</a></kbd> no Javascript e também treinar a sua prática para ter um bom entendimento.</p>
-<p>Para ficar mais claro esse funcionamento assíncrono que o Javascript tem, vamos a um exemplo clássico para explicar isso:</p>
-<p>Imagine como funciona o serviço de um garçom para pegar e levar os pedidos (chamados de comandas) dos clientes para a cozinha. Ele basicamente vai ir até a mesa de um cliente que chegou, vai anotar os seus pedidos, e levar a comanda para a cozinha, continuamente ele vai fazendo isso com outros clientes que ainda não foram atendidos, isso independentemente do pedido do outro cliente ainda não ter chegado na mesa dele. Então o garçom NÃO precisa que um pedido de um cliente esteja pronto para que ele entregue-o e assim prosseguir para atender algum outro cliente, ele apenas vai atendendo outros clientes enquanto os pedidos estão sendo realizados na cozinha e quando algum pedido fica pronto, ele termina o que está fazendo no momento e vai levar o pedido para a mesa do cliente que requisitou aquilo.</p>
-<p>Isso explica de forma mais simplificada o que foi dito lá cima, isso é, uma single thread, que pode ser usada por exemplo, na requisição de um Banco de Dados, onde um usuário faz uma requisição que é necessária consultar o Banco de Dados da aplicação, chamando uma função <kbd><a href="">Assíncrona</a></kbd> que vai ter um processo especificado para que realize algo quando o processamento da consulta do banco de dados acabar, ou seja, assim quando essa função Assíncrona for realizada, uma callback será adicionada a uma lista de funções a serem executadas, assim ela será executada realizando o que foi especificado a ela. Então graças a isso, é possível receber diversas threads ao mesmo tempo, ou seja, enquanto o usuário manda uma requisição que é necessária consultar o banco de dados como explicado a cima, ele pode ir realizando outras coisas, sem que seja interrompido (um processo chamado de thread única não bloquante).</p>
+<p>As we can see, the second block of code executed first, since the first code was determined to be executed after 3000 milliseconds in setInterval</p>
+<p>With this information in hand, it is good to see what <kbd><a href="">callback</a></kbd> is in Javascript and also to train your practice to have a good understanding.</p>
+<p>To make this asynchronous operation that Javascript has more clear, let's go to a classic example to explain this:</p>
+<p>Imagine how the service of a waiter works to take and take orders (called commands) from customers to the kitchen. He will basically go to the table of a customer who arrived, will take his orders, and take the command to the kitchen, continuously he will do this with other customers who have not yet been served, regardless of the order of the other customer not yet have arrived at his table. So the waiter does NOT need an order from a customer to be ready for him to deliver it and thus proceed to serve another customer, he just goes on serving other customers while the orders are being placed in the kitchen and when any order is ready, he finishes what you are doing at the moment and will take the order to the table of the customer who requested it.</p>
+<p>This explains in a more simplified way what was said above, that is, a single thread, which can be used, for example, in the request of a Database, where a user makes a request that is necessary to consult the Database of application, calling an <kbd><a href="">Asynchronous</a></kbd> function that will have a specified process to do something when the database query processing is finished, that is, so when that Asynchronous function is performed, a callback will be added to a list of functions to be executed , so it will be executed by doing what has been specified to it. So thanks to this, it is possible to receive several threads at the same time, that is, while the user sends a request that it is necessary to consult the database as explained above, he can carry out other things, without being interrupted (a process called a non-blocking single thread).</p>
 
 <h2 id="features">1.2 Advantages</h2>
-<p>A sua grande vantagem em relação ao seu funcionamento é o envio e recebimento intenso de dados com o servidor feito em Node.js, ganhando uma grande velocidade e execução mais performada, ou seja, uma thread não bloquante</p>
-<p>O Node.js também tem uma grande vantagem em relação ao desenvolvimento, pois ele oferece uma infinidade de recursos e mini bibliotecas que o utiliza, esse forncecimento ocorre através do <a href="https://www.npmjs.com/">NPM</a> (Node Package Manager), que basicamente gerencia pacotes em Node.js para facilitar em alguns desenvolvimentos, utilizando apenas o terminal, é possível importar para o desenvolvimento de algum projeto, uma infinidade de pacotes que ele armazena, como um mini framework que facilita o desenvolvimento em Node.js, que é o Express:</p>
+<p>Its great advantage in relation to its operation is the intense sending and receiving of data with the server made in Node.js, gaining a great speed and more performed performance, that is, a non-blocking thread</p>
+<p>Node.js also has a great advantage in relation to development, as it offers a multitude of resources and mini libraries that use it, this supply occurs through the <a href="https://www.npmjs.com/">NPM</a> (Node Package Manager), which basically manages packages in Node.js to facilitate in some developments, using only the terminal, it is possible to import for the development of some project, a multitude of packages that it stores, as a mini framework that facilitates the development in Node.js, which is Express:</p>
 
 ```bash
 $ npm install express
 ```
 
-<p>Ao executar esse comando com o Node.js na sua máquina, ele criará um projeto prototipado do Express desenvolvido em Node.js, com um pacote de desenvolvimento dele chamdo node_modules, havendo os módulos e configurações para desenvolver o projeto em Node.js</p>
+<p>When executing this command with Node.js on your machine, it will create a prototyped Express project developed in Node.js, with a development package of it called node_modules, with the modules and configurations to develop the project in Node.js</p>
 
-<p>Tudo isso possibilita ter um código muito mais limpo, menor e mais estruturado...</p>
+<p>All of this makes it possible to have a much cleaner, smaller and more structured code...</p>
 
 <h2 id="its-use">1.3 Its Use</h2>
-<p>O Node.js tem sido muito recorrido no mundo da programação desde sua criação em 2009, pelo simples fato de ele oferecer uma solução de funcionamento que se encaixa muito bem para muitas situações como na <b>criação de API</b> ou no <b>desenvolvimento Backend</b>, sempre acompanhado com consultas, requisições e Promises vindas do Banco de Dados principalmente.</p>
-<p>Tudo isso como dito, chamou a atenção de muitas empresas, que o usou, como a Netflix, Uber, Linkedin, Nasa, PayPal e muito mais...</p>
+<p>Node.js has been widely used in the programming world since its creation in 2009, due to the simple fact that it offers a working solution that fits very well for many situations such as <b>API creation</b> or <b>Backend development</b>, always accompanied with queries. , requisitions and Promises coming from the Database mainly.</p>
+<p>All of this as said, drew the attention of many companies, who used it, such as Netflix, Uber, Linkedin, Nasa, PayPal and more...</p>
 
 <br>
 
 <h1 id="how-to-use-node">2. HOW TO USE NODE.JS</h1>
-<p>Para utilizar o Node.js, é necessário apenas o próprio Node.js e um editor de código, que no caso é muito recomendado o <a href="https://code.visualstudio.com/">Visual Studio Code</a>, pois com ele é possível executar muitas coisas, como o próprio Node.js, ou utilizar o terminal para ir adicionando pacotes ao projeto com o NPM</p>
+<p>To use Node.js, you only need Node.js itself and a code editor, in which case <a href="https://code.visualstudio.com/">Visual Studio Code</a> is highly recommended, because with it you can run many things, such as Node.js itself, or use the terminal to add packages to the project with NPM</p>
 
 <h2 id="install-node">2.1 Install :floppy_disk:</h2>
-<p>Para instalar o Node.js de forma correta, é importante seguir o passo a passo para que seja possível o uso do NPM em sua máquina, o que vai tornar seus projetos muito mais práticos e melhores.</p>
-<p>1. Baixe → <kbd><a href="https://nodejs.org/en/download/">Node.js</a></kbd></p>
-<p>2. Abra o arquivo baixado para sua intalação</p>
-<p>3. Ao seguir as etapas de instação no setup, é importante deixar marcado a inclusão do NPM</p>
-<p>Quando terminado, dê o comando <code>node --version</code> e <code>npm --version</code> no terminal para verificar se eles foram instalados corretamente</p>
+<p>To install Node.js correctly, it is important to follow the step-by-step to make it possible to use NPM on your machine, which will make your projects much more practical and better.</p>
+<p>1. Download → <kbd><a href="https://nodejs.org/en/download/">Node.js</a></kbd></p>
+<p>2. Open the downloaded file for your installation</p>
+<p>3. When following the installation steps in the setup, it is important to leave the inclusion of NPM checked</p>
+<p>When finished, give the <code>node --version</code> and <code>npm --version</code> command on the terminal to verify that they have been installed correctly</p>
 
 <h2 id="small-node-application">2.2 Running a small application in Node.js :game_die:</h2>
 
 <br>
 
 <h1 id="applications-with-node">3. APPLICATIONS WITH NODE.JS :computer:</h1>
-<p>Aqui deixo alguns mini-projetos feito em Node.js para praticar, caso queira vê-los ou queira utilizá-los como ideia para desenvolver algo e praticar, deixo-os para <a href="#how-to-clone-the-exercises">clonar</a>.</p>
+<p>Here I leave some small projects done in Node.js to practice, if you want to see them or want to use them as an idea to develop something and practice, I leave them to <a href="#how-to-clone-the-exercises">clone</a>.</p>
 
 <h2 id="getting-started-with-node">3.1 Getting Started With Node.js (study topics)</h2>
-<p>A forma mais símples de entender o Node.js assim como muitas coisas na programação, é praticando, pegando os recursos que ele oferece e os manipulando para ver seu funcionamento...</p>
+<p>The simplest way to understand Node.js, as well as many things in programming, is to practice, taking the resources it offers and manipulating them to see how it works...</p>
 
 <h2 id="exercises-to-perform-to-practice-the-node">3.2 Exercises To Practice The Node.js :pencil2:</h2>
 
@@ -169,7 +169,7 @@ $ git pull origin main
 
 <br>
 
-<p>Agora é praticar Node.js e se tornar um mestre utilizando-o... :laughing:</p>
+<p>Now is to practice Node.js and become a master using it... :laughing:</p>
 <img width="700px" src="http://clubedosgeeks.com.br/wp-content/uploads/2016/01/dormrm.gif" alt="GIF Programming">
 
 <h1 id="references">4. REFERENCES :anchor:</h1>
