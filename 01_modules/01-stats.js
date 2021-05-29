@@ -1,4 +1,5 @@
-const { freemem, totalmem } = require('os'); // lida com números de memória no dispositivo
+const { freemem, totalmem } = require('os'); // handles memory numbers on the device
+const { log } = require('./02_logger');
 
 setInterval(() => {
     const total = parseInt(totalmem() / 1024 / 1024);
@@ -14,4 +15,6 @@ setInterval(() => {
     console.clear();
     console.log("---------------------- PC STATS ----------------------");
     console.table(stats);
+
+    log(`${JSON.stringify(stats)}\n`);
 }, 1000)
