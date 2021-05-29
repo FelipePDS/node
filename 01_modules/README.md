@@ -1,4 +1,4 @@
-# MODULES NO NODE.JS
+# NODE.JS MODULES
 
 Exploring the features of Node.js through the use of its modules
 
