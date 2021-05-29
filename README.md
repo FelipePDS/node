@@ -176,6 +176,8 @@ $ git pull origin main
 
 <ul>
     <li><a href="https://app.rocketseat.com.br/discover">Rocketseat Discover</a></li>
+    <li><a href="https://www.youtube.com/watch?v=DiXbJL3iWVs&list=PLAW7Bip9qIebPp4STtLYyLNkgYFEkDmCl&index=2&t=2566s">Rocketseat - Video</a></li>
+    <li><a href="https://www.youtube.com/watch?v=vYekSMBCCiM&t=1s">Código Fonte TV - Video</a></li>
     <li>Materials:</li>
     <ul>
         <li><a href="https://nodejs.org/">Node.js</a></li>
