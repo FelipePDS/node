@@ -1,0 +1,17 @@
+{
+  "name": "02_http",
+  "version": "1.0.0",
+  "description": "Creating Server with node.js http, net.Server and EventEmitter",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "api": "nodemon api/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
