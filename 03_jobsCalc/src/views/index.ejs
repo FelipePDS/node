@@ -32,7 +32,13 @@
           <img id="logo" src="/images/logo.svg" alt="Logo" />
           <span id="notification">
             <img src="/images/alert-octagon.svg" alt="Alerta" />
-            Você tem 2 horas livres no seu dia
+            <% if (freeHoursInTheDay > 0) { %> 
+                Você tem <%= freeHoursInTheDay %>  horas livre(s) no seu dia
+            <% } else if (freeHoursInTheDay === 0) { %> 
+                Você não tem horário livre no seu dia
+            <% } else { %> 
+                Sua carga horária aumentará em <%= freeHoursInTheDay * (-1) %> hora(s) no seu dia 
+            <% } %> 
           </span>
           <a href="/profile" id="avatar-profile">
             <p><%= profile.name %> <span>Ver perfil</span></p>
@@ -49,15 +55,15 @@
 
           <div class="info">
             <div class="total">
-              <strong><%= jobs.length %></strong>
+              <strong><%= jobInformation.total %></strong>
               Projetos ao total
             </div>
             <div class="in-progress">
-              <strong><%= jobs.filter(job => job.status === 'progress').length %></strong>
+              <strong><%= jobInformation.totalInProgress %></strong>
               Em andamento
             </div>
             <div class="finished">
-              <strong><%= jobs.filter(job => job.status === 'done').length %></strong>
+              <strong><%= jobInformation.totalsDone %></strong>
               Encerrados
             </div>
           </div>
