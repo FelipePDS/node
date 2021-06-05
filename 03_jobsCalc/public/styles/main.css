@@ -62,6 +62,10 @@
   }
 }
 
+html {
+    width: 100vw !important;
+}
+
 /* tags styling */
 body {
   background: var(--color-background);
