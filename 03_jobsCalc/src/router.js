@@ -1,21 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const ProfileController = require('./controllers/ProfileController.js');
+const ProfileController = require('./controllers/ProfileController');
 
 const profileController = new ProfileController();
-
-const Profile = {
-    data: {
-        name: 'Felipe',
-        avatar: 'https://avatars.githubusercontent.com/u/64941387?v=4',
-        monthlyBudget: 3000,
-        hoursPerDay: 5,
-        daysPerWeek: 5,
-        vacationPerYear: 4,
-        hourlyValue: 75.00
-    }
-};
 
 const Jobs = {
     data: [
@@ -55,20 +43,22 @@ const Jobs = {
             return res.render('index', { profile: Profile.data, jobs });
         },
 
-        index(req, res) {
+        create(req, res) {
             return res.render('job');
         },
 
         save(req, res) {
-            const lastId = Jobs.data[Jobs.data.length - 1]?.id || 0;
+            const { name, dailyHours, totalHours } = req.body;
+            const id = (Jobs.data[Jobs.data.length - 1]?.id) || 1;
 
             Jobs.data.push({
-                id: lastId + 1,
-                name: req.body.name,
-                dailyHours: req.body.dailyHours,
-                totalHours: req.body.totalHours,
+                id,
+                name,
+                dailyHours,
+                totalHours,
                 createdAt: Date.now()
             });
+
             return res.redirect('/');
         },
 
@@ -135,7 +125,7 @@ const Jobs = {
 
 router.get('/', Jobs.controllers.show);
 
-router.get('/job', Jobs.controllers.index);
+router.get('/job', Jobs.controllers.create);
 router.post('/job', Jobs.controllers.save);
 
 router.get('/job/:id', Jobs.controllers.edit);
@@ -143,7 +133,7 @@ router.post('/job/:id', Jobs.controllers.update);
 
 router.post('/job/delete/:id', Jobs.controllers.delete);
 
-router.get('/profile', profileController.index);
+router.get('/profile', profileController.edit);
 router.post('/profile', profileController.update);
 
 module.exports = router;
