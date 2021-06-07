@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const { ProfileController } = require('./controllers/ProfileController');
-const { JobsController } = require('./controllers/JobsController');
+const ProfileController = require('./controllers/ProfileController');
+const JobsController = require('./controllers/JobsController');
 const DashboardController = require('./controllers/DashboardController');
 
 const profileController = new ProfileController();
