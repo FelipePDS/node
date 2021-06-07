@@ -4,8 +4,9 @@
   "description": "Freelance Calculator",
   "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "env PORT=3000 nodemon ."
+    "dev": "env PORT=3000 nodemon .",
+    "run-db-CreateProfile": "node src/database/runs/CreateProfile.js",
+    "run-db-CreateJobs": "node src/database/runs/CreateJobs.js"
   },
   "keywords": [],
   "author": "",
