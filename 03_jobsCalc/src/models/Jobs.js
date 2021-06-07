@@ -1,40 +1,76 @@
+const ConnectionDatabase = require('../database/');
+
 class Jobs { 
-    datas = [
-        {
-            id: 1,
-            name: "Pizzaria Guloso",
-            dailyHours: 2,
-            totalHours: 1,
-            createdAt: Date.now(),
-            budget: Number,
-            remainingDays: Number,
-            status: String
-        },
-        
-        {
-            id: 2,
-            name: "OneTwo Project",
-            dailyHours: 3,
-            totalHours: 47,
-            createdAt: Date.now(),
-            budget: Number,
-            remainingDays: Number,
-            status: String
-        }
-    ];
+    async getAll() {
+        const db = await ConnectionDatabase();
 
-    save(datas) {
-        this.datas.push(datas);
+        const datas = await db.all(`SELECT * FROM jobs`);
+
+        await db.close();
+
+        return datas;
     };
 
-    update(job, newData) {
-        Object.keys(newData).map(key => {
-            job[key] = newData[key];
-        });
+    async getById(id) {
+        const db = await ConnectionDatabase();
+
+        const datas = await db.get(`SELECT * FROM jobs WHERE id = ${id}`);
+
+        await db.close();
+
+        return datas;
     };
 
-    delete(id) {
-        this.datas = this.datas.filter(job => Number(job.id) !== Number(id));
+    async save({ name, dailyHours, totalHours, createdAt, budget, remainingDays, status }) {
+        const db = await ConnectionDatabase();
+
+        await db.run(`
+            INSERT INTO jobs (
+                name, 
+                dailyHours, 
+                totalHours,
+                createdAt,
+                budget,
+                remainingDays,
+                status
+            ) VALUES (
+                "${name}", 
+                ${dailyHours}, 
+                ${totalHours},
+                ${createdAt},
+                ${budget},
+                ${remainingDays},
+                "${status}"
+            )
+        `);
+
+        await db.close();
+    };
+
+    async update(id, { name, dailyHours, totalHours, createdAt, budget, remainingDays, status }) {
+        const db = await ConnectionDatabase();
+
+        await db.run(`
+            UPDATE jobs SET
+                name = "${name}",
+                dailyHours = ${dailyHours}, 
+                totalHours = ${totalHours},
+                createdAt = ${createdAt},
+                budget = ${budget},
+                remainingDays = ${remainingDays},
+                status = "${status}"
+            WHERE id = ${id}
+        `);
+
+        await db.close();
+    };
+
+    async delete(id) {
+        const db = await ConnectionDatabase();
+
+        await db.run(`DELETE FROM jobs WHERE id = ${id}`);
+
+        await db.close();
     };
 };
 
