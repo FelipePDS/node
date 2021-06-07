@@ -104,6 +104,8 @@ $ npm install express
 <p>When finished, give the <code>node --version</code> and <code>npm --version</code> command on the terminal to verify that they have been installed correctly</p>
 
 <h2 id="small-node-application">2.2 Running a small application in Node.js :game_die:</h2>
+<p>The main functionality of Node.js is to work with <a href="https://github.com/FelipePDS/node/tree/main/01_modules">Modules</a> and <a href="https://github.com/FelipePDS/node/tree/main/02_http">HTTP</a>.</p>
+<p>See the <a href="https://www.youtube.com/watch?v=QfcozcbDhNM&list=PLAW7Bip9qIebPp4STtLYyLNkgYFEkDmCl&index=1&t=199s">Rocketseat Node.js Masterclass</a></p>
 
 <br>
 
@@ -154,16 +156,16 @@ $ git pull origin main
       <th>DESCRIPTION</th>
     </tr>
     <tr align="center">
-        <td><kbd><a href="">Exercise</a></kbd></td>
-        <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</td>
+        <td><kbd><a href="https://github.com/FelipePDS/node/tree/main/02_http">01_modules</a></kbd></td>
+        <td>Learning about node.js module imports and exports feature</td>
     </tr>
     <tr align="center">
-        <td><kbd><a href="">Exercise</a></kbd></td>
-        <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</td>
+        <td><kbd><a href="https://github.com/FelipePDS/node/tree/main/02_http">02_http</a></kbd></td>
+        <td>Creating server with node.js http</td>
     </tr>
     <tr align="center">
-        <td><kbd><a href="">Exercise</a></kbd></td>
-        <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</td>
+        <td><kbd><a href="https://github.com/FelipePDS/node/tree/main/03_jobsCalc">03_jobsCalc</a></kbd></td>
+        <td>Starting rocketseat discover project to practice node.js</td>
     </tr>
 </table>
 
