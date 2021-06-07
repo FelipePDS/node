@@ -1,62 +1,92 @@
 const Jobs = require('../models/Jobs');
-const jobs = new Jobs();
+const Profile = require('../models/Profile');
+
+const { calculateRemainingDays, defineStatus, calculateBudget } = require('../utils/jobUtils');
 
 class JobsController {
     create(req, res) {
         return res.render('job');
     };
 
-    save(req, res) {
-        const { name, dailyHours, totalHours } = req.body;
-        const id = (jobs.datas[jobs.datas.length - 1]?.id) + 1 || 1;
+    async save(req, res) {
+        const datas = req.body;
 
-        const datas = {
-            id,
-            name,
-            dailyHours,
-            totalHours,
+        const jobDataPrototype = {
+            ...datas,
             createdAt: Date.now()
         };
 
-        jobs.save(datas);
+        const profile = new Profile();
+        const profileDatas = await profile.get();
+
+        const remainingDays = calculateRemainingDays(jobDataPrototype);
+        const status = defineStatus(jobDataPrototype);
+        const budget = calculateBudget(jobDataPrototype, profileDatas.hourlyValue);
+
+        const jobData = {
+            ...jobDataPrototype,
+            remainingDays,
+            status,
+            budget
+        };
+
+        const jobs = new Jobs();
+        await jobs.save(jobData);
 
         return res.redirect('/');
     };
 
-    edit(req, res) {
+    async edit(req, res) {
         const { id } = req.params;
 
-        const job = jobs.datas.find(job => Number(job.id) === Number(id));
+        const jobs = new Jobs();
+        const jobData = await jobs.getById(id);
 
-        if (!job) return res.send('Job não encontrado');
+        if (!jobData) return res.send('Job não encontrado');
 
-        return res.render('job-edit', { job });
+        return res.render('job-edit', { job: jobData });
     };
 
-    update(req, res) {
+    async update(req, res) {
         const { id } = req.params;
-        const datas = req.body;
+        const newDatas = req.body;
 
-        const job = jobs.datas.find(job => Number(job.id) === Number(id));
+        const jobs = new Jobs();
+        const job = await jobs.getById(id);
+        const createdAt = job.createdAt;
 
-        if (!job) return res.send('Job não encontrado');
+        const jobDataPrototype = {
+            ...newDatas,
+            createdAt
+        };
 
-        jobs.update(job, datas);
+        const profile = new Profile();
+        const profileDatas = await profile.get();
+
+        const remainingDays = calculateRemainingDays(jobDataPrototype);
+        const status = defineStatus(jobDataPrototype);
+        const budget = calculateBudget(jobDataPrototype, profileDatas.hourlyValue);
+
+        const newJobData = {
+            ...jobDataPrototype,
+            remainingDays,
+            status,
+            budget
+        };
+
+        await jobs.update(id, newJobData);
 
         return res.redirect(`/job/${id}`);
     };
 
-    delete(req, res) {
+    async delete(req, res) {
         const { id } = req.params;
-
-        const job = jobs.datas.find(job => Number(job.id) === Number(id));
-
-        if (!job) return res.send('Job não encontrado');
-
-        jobs.delete(id);
+        
+        const jobs = new Jobs();
+        await jobs.delete(id);
 
         return res.redirect(`/`);
     };
 };
 
-module.exports = { JobsController, jobs };
+module.exports = JobsController;
