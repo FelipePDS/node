@@ -1,25 +1,21 @@
 const Profile = require('../models/Profile');
-const profile = new Profile();
-
-const { calculateHourlyValue } = require('../utils/profileUtils');
 
 class ProfileController {
-    edit(req, res) {
-        return res.render('profile', { profile });
+    async edit(req, res) {
+        const profile = new Profile();
+        const profileData = await profile.get();
+
+        return res.render('profile', { profile: profileData });
     };
 
-    update(req, res) {
-        const datas = req.body;
-
-        const hourlyValue = calculateHourlyValue(datas);
-
-        profile.update(profile, {
-            ...datas,
-            hourlyValue
-        });
+    async update(req, res) {
+        const newDatas = req.body;
+        
+        const profile = new Profile();
+        await profile.update(newDatas);
 
         return res.redirect('/profile');
     };
 };
 
-module.exports = { ProfileController, profile };
+module.exports = ProfileController;
