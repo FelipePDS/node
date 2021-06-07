@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/static/v1?label=node&message=v12.18.0&color=339933&style=for-the-badge&logo=node.js&logoColor=white"> 
 </p>
 
-<!-- IMAGE -->
+<img src=".github/images/server.png" />
 
 <h1>ABOUT :page_with_curl:</h1>
 
