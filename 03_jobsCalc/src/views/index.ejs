@@ -93,7 +93,7 @@
                         <% if (job.remainingDays > 0) { %> 
                             <p><%= job.remainingDays %> dias para a entrega</p>
                         <% } else if (job.remainingDays === 0) { %> 
-                            <p>Encerrado hoje</p>
+                            <p>Encerra hoje</p>
                         <% } else { %> 
                             <p>Encerrado há <%= (job.remainingDays * (-1)) %> dias </p>
                         <% } %> 
