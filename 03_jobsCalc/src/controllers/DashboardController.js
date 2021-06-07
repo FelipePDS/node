@@ -1,32 +1,28 @@
-const { jobs } = require('./JobsController');
-const { profile } = require('./ProfileController');
-
-const { calculateBudget, remainingDays } = require('../utils/jobUtils');
+const Jobs = require('../models/Jobs');
+const Profile = require('../models/Profile');
 
 class DashboardController {
-    show(req, res) {
-        jobs.datas.map(job => {
-            job.remainingDays = remainingDays(job);
-            job.status = job.remainingDays <= 0 ? 'done' : 'progress';
-            job.budget = calculateBudget(job, profile.hourlyValue);
+    async show(req, res) {
+        const jobs = new Jobs();
+        const jobsDatas = await jobs.getAll();
 
-            return job;
-        });
+        const profile = new Profile();
+        const profileDatas = await profile.get();
 
         const jobInformation = {
-            total: jobs.datas.length,
+            total: jobsDatas.length,
 
-            totalInProgress: jobs.datas.filter(job => job.status === 'progress').length,
+            totalInProgress: jobsDatas.filter(job => job.status === 'progress').length,
 
-            totalsDone: jobs.datas.filter(job => job.status === 'done').length
+            totalsDone: jobsDatas.filter(job => job.status === 'done').length
         };
 
-        let freeHoursInTheDay = Number(profile.hoursPerDay);
-        jobs.datas.filter(job => {
+        let freeHoursInTheDay = Number(profileDatas.hoursPerDay);
+        jobsDatas.filter(job => {
             job.status === 'progress' ? freeHoursInTheDay -= Number(job.dailyHours) : null;
         });
 
-        return res.render('index', { profile, jobs: jobs.datas, jobInformation, freeHoursInTheDay });
+        return res.render('index', { jobs: jobsDatas, profile: profileDatas, jobInformation, freeHoursInTheDay });
     };
 };
 
