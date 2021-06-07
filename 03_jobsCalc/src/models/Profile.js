@@ -1,29 +1,63 @@
+const ConnectionDatabase = require('../database/');
+
 const { calculateHourlyValue } = require('../utils/profileUtils');
 
 class Profile {
     constructor() {
-        const datas = { 
-            monthlyBudget: this.monthlyBudget,
-            hoursPerDay: this.hoursPerDay,
-            daysPerWeek: this.daysPerWeek,
-            vacationPerYear: this.vacationPerYear
-        };
+        const datas = ConnectionDatabase().then(db => 
+            db.get(`SELECT * FROM profile`)
+        );
 
-        this.hourlyValue = calculateHourlyValue(datas);
+        datas.then(datas => calculateHourlyValue(datas))
+        .then(hourlyValue => {
+            ConnectionDatabase()
+            .then(db => {
+                datas.then(datas => {
+                    if (!datas.hourlyValue) {
+                        db.run(`UPDATE profile SET hourlyValue = ${hourlyValue}`);
+                    };
+                });
+            });
+        })
+        .then(() => 
+            ConnectionDatabase().then(db => db.close())
+        );
     };
 
-    name = 'Felipe';
-    avatar = 'https://avatars.githubusercontent.com/u/64941387?v=4';
-    monthlyBudget = 3000;
-    hoursPerDay = 5;
-    daysPerWeek = 5;
-    vacationPerYear = 4;
-    hourlyValue = Number;
+    async get() {
+        const db = await ConnectionDatabase();
 
-    update(profile, newData) {
-        Object.keys(profile).map(key => {
-            profile[key] = newData[key];
-        });
+        const datas = await db.get(`SELECT * FROM profile`);
+
+        await db.close();
+
+        return datas;
+    };
+
+    async update({ name, avatar, monthlyBudget, hoursPerDay, daysPerWeek, vacationPerYear }) {
+        const db = await ConnectionDatabase();
+
+        const datas = {
+            monthlyBudget,
+            hoursPerDay,
+            daysPerWeek,
+            vacationPerYear
+        };
+
+        const hourlyValue = calculateHourlyValue(datas);
+
+        await db.run(`
+            UPDATE profile SET
+                name = "${name}",
+                avatar = "${avatar}",
+                monthlyBudget = ${monthlyBudget},
+                hoursPerDay = ${hoursPerDay},
+                daysPerWeek = ${daysPerWeek},
+                vacationPerYear = ${vacationPerYear},
+                hourlyValue = ${hourlyValue}
+        `);
+
+        await db.close();
     };
 };
 
