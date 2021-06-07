@@ -1,5 +1,5 @@
 module.exports = {
-    remainingDays({ totalHours, dailyHours, createdAt }) {
+    calculateRemainingDays({ totalHours, dailyHours, createdAt }) {
         const remainingDays = (totalHours / dailyHours).toFixed();
     
         const createdDate = new Date(createdAt);
@@ -12,6 +12,10 @@ module.exports = {
         const dayDiff = Math.floor(timeDiffInMs / dayInMs);
     
         return dayDiff;
+    },
+
+    defineStatus({ remainingDays }) {
+        return remainingDays <= 0 ? 'done' : 'progress';
     },
 
     calculateBudget({ totalHours }, hourlyValue) {
